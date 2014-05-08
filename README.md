@@ -24,5 +24,7 @@ administrar el contenido del catálogo y despachar los pedidos.
 * Soporte para comprar usando tarjetas de crédito.
 * Soporte para comprar usando servicios como PayPal.
 * Permitir al cliente imprimir los detalles de sus pedidos.
+* Proporcionar al administrador del carrito un panel de personalización del
+  frontend.
 
 Desarrollado en Mundo Virtual.
