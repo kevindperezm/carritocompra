@@ -9,6 +9,6 @@
         }
     ],
     "require": {
-
+        "knplabs/knp-snappy": "0.1.*@dev"
     }
 }
