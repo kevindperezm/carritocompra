@@ -11,11 +11,7 @@
 <div class='alert alert-danger'>
 	<p><?=$mensaje_error?></p>
 	<?=validation_errors()?>
-</div>
-<?php } else { ?>
-<!-- <div class='alert alert-warning'>
-	<p><b>Recordatorio:</b> Todos los campos son necesarios</p>
-</div> -->
+</div><br>
 <?php } ?>
 
 <div>
