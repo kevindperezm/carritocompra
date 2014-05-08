@@ -1,0 +1,14 @@
+{
+    "name": "mundovirtual/carritocompra",
+    "description": "Un sitio web con catálogo, carrito de compra e interfaz de administración fácil e intuitivo.",
+    "license": "Private",
+    "authors": [
+        {
+            "name": "Kevin Perez",
+            "email": "kevindperezm@gmail.com"
+        }
+    ],
+    "require": {
+
+    }
+}
