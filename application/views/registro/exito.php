@@ -3,8 +3,9 @@
 	Se ha registrado con éxito.
 </div>
 <div>
+	<br>
 	<p>
-		Usted ha sido registrado exitosamente en <?=NOMBRE_TIENDA?>. 
+		Usted ha sido registrado exitosamente en <?=NOMBRE_TIENDA?>.
 		Ya puede comenzar a utilizar sus servicios.
 	</p>
 	<p>	
