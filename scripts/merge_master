@@ -1,0 +1,2 @@
+#! /bin/bash
+for BRANCH in `ls .git/refs/heads`; do if [[ "$BRANCH" != "master" ]] ; then git checkout $BRANCH ; git merge master ; fi ; done
