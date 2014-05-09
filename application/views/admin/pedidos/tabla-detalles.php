@@ -67,7 +67,7 @@
 			</tr>
 			<?php } ?>
 			<tr>
-				<td class="text-right" colspan="6"><h3>Total:</h3></td>
+				<td class="text-right" colspan="7"><h3>Total:</h3></td>
 				<td class="text-right"><h3>$ <?=number_format($total, 2)?> M.N.</h3></td>
 			</tr>
 		</table>
