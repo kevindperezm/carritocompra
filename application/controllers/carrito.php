@@ -199,7 +199,7 @@ class Carrito extends CI_Controller {
 		}
 	}
 
-	public function confirmado($idpedido, $imprimir = false) {
+	public function confirmado($idpedido) {
 		// Este método previene que cuando se refresque la página de confirmación
 		// de pedido se cree un nuevo pedido vacío.
 
@@ -213,29 +213,8 @@ class Carrito extends CI_Controller {
 		// Comprobando que el usuario sea el mismo que el que hizo el pedido.
 		if ($data['usuario']->id == $data['pedido']->usuario->id) {
 			$data['titulo'] = 'Compra confirmada';
-			if ($imprimir) {
-				# Genera el PDF imprimible con los detalles del pedido
-				require_once(FCPATH.'application/third_party/tcpdf/tcpdf_import.php');
-				$pdf = new TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, "A4", true, 'UTF-8', false);
-				ini_set('memory_limit','32M'); 
-				$pdf->setPrintHeader(false);
-				$pdf->SetMargins(0,0,0,true);
-				$pdf->SetAutoPageBreak(TRUE, 0);
-				$pdf->AddPage();
-				#$pdf->writeHTML(load_template($this, 'catalogo/carrito-confirmado', $data, true));
-				$html = load_template($this, 'login/index', $data, true);
-				// echo '<pre>';
-				// echo $html;
-				// echo '</pre>';
-				// return;
-				$pdf->writeHTML($html);
-				$pdf->Output('example_001.pdf', 'I');
-
-			    return;
-				} else {
-					# Muestra la vista de pedido confirmado
-					load_template($this, 'catalogo/carrito-confirmado', $data);
-				}
+			# Muestra la vista de pedido confirmado
+			load_template($this, 'catalogo/carrito-confirmado', $data);
 		} else {
 			flash_exito($this, FALSE, 'El usuario actual no realizó el pedido que trata de ver. Acceso prohibido.');
 			redirigir_pagina($this, 'catalogo', 'catalogo');
@@ -244,7 +223,22 @@ class Carrito extends CI_Controller {
 
 	public function imprimir($idpedido) {
 		// Genera el PDF imprimible de los detalles del pedido.
-		$this->confirmado($idpedido, true);
+		# TODO: Verificar que quien ve el pedido es quien lo generó.
+		$data['pedido'] = Pedido::find_by_id($idpedido);
+		if (!is_null($data['pedido'])) {
+			# Generar PDF
+			$pdf = new Knp\Snappy\Pdf(FCPATH.'/vendor/wkhtmltox/bin/wkhtmltopdf');
+			$html = load_template($this, 'catalogo/carrito-confirmado', $data, TRUE);
+
+			header('Content-Type: application/pdf');
+			header('Content-Disposition: attachment; filename="file.pdf"');
+
+			echo $pdf->getOutputFromHtml($html);
+		} else {
+			# No existe pedido. Notificar.
+			flash_exito($this, FALSE, 'El pedido solicitado no existe.');
+			redirigir_pagina($this, 'catalogo', 'catalogo');
+		}
 	}
 }
 ?>
