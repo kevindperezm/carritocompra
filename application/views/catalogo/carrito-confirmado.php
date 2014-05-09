@@ -12,7 +12,7 @@
 	<div class='col-xs-12'>
 		<!-- <div class='well'> -->
 			<a class='btn btn-primary' href='<?=link_pagina($this, 'catalogo', 'catalogo')?>'>Volver al catálogo</a> 
-			<a class='btn btn-default' href='<?=base_url()?>carrito/imprimir/<?=$pedido->id?>'>Imprimir</a>
+			<a class='btn btn-default' target="_blank" href='<?=base_url()?>carrito/imprimir/<?=$pedido->id?>'>Imprimir</a>
 		<!-- </div> -->
 	</div>
 </div>	
