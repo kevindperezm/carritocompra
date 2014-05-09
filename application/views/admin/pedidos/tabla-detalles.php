@@ -39,10 +39,11 @@
 			</tr>
 		</table>
 	</div>
-	<?php $total = 0 ?>
+	<?php $total = 0; $num = 0 ?>
 	<div class="table-responsive">
 		<table class='table-striped table-condensed table-bordered' style="min-width: 100%">
 			<tr>
+				<th>No.</th>
 				<th>Imagen</th>
 				<th>Código</th>
 				<th>Descripción</th>
@@ -53,6 +54,7 @@
 			</tr>
 			<?php foreach ($pedido->compras as $compra) { ?>
 			<tr>
+				<td><?=++$num?>
 				<td><img class='img-responsive producto-imagen' src='<?=base_url().$compra->producto->imagen?>' alt='Imagen del producto'></td>
 				<td><?=$compra->producto->codigo?></td>
 				<td><?=$compra->producto->descripcion?></td>
