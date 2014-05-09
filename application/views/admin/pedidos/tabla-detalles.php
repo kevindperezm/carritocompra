@@ -1,9 +1,7 @@
-<p>
-	<small>
-		<b>Nota: </b>Los precios listados en la siguiente tabla son los precios
-		que estaban vigentes en el momento en que este pedido fue elaborado. Los totales
-		mostrados son calculados usando esos precios. Podrían diferir de los precios actuales de cada producto.
-	</small>
+<p class='font-size: small'>
+	<b>Nota: </b>Los precios listados en la siguiente tabla son los precios
+	que estaban vigentes en el momento en que este pedido fue elaborado. Los totales
+	mostrados son calculados usando esos precios. Podrían diferir de los precios actuales de cada producto.
 </p>
 <?php if (isset($admin)) { ?>
 <div class='acciones-bar row'>
@@ -45,8 +43,8 @@
 	<div class="table-responsive">
 		<table class='table-striped table-condensed table-bordered' style="min-width: 100%">
 			<tr>
-				<th>Código</th>
 				<th>Imagen</th>
+				<th>Código</th>
 				<th>Descripción</th>
 				<th>Variante</th>
 				<th>Precio unitario</th>
@@ -55,8 +53,8 @@
 			</tr>
 			<?php foreach ($pedido->compras as $compra) { ?>
 			<tr>
-				<td><?=$compra->producto->codigo?></td>
 				<td><img class='img-responsive producto-imagen' src='<?=base_url().$compra->producto->imagen?>' alt='Imagen del producto'></td>
+				<td><?=$compra->producto->codigo?></td>
 				<td><?=$compra->producto->descripcion?></td>
 				<td><?=mostrarVariante($compra)?></td>
 				<td class='text-right'>$ <?=number_format($compra->precio_unitario, 2)?><br>x <?=!is_null($compra->producto->medida) ? $compra->producto->medida->nombre : 'pieza';?></td>
