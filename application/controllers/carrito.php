@@ -229,9 +229,10 @@ class Carrito extends CI_Controller {
 			# Generar PDF
 			$pdf = new Knp\Snappy\Pdf(FCPATH.'/vendor/wkhtmltox/bin/wkhtmltopdf');
 			$html = load_template($this, 'catalogo/carrito-confirmado', $data, TRUE);
+			$nombre = "detalles_pedido_".$data['pedido']->created_at->format('Ymd').".pdf";
 
 			header('Content-Type: application/pdf');
-			header('Content-Disposition: attachment; filename="file.pdf"');
+			header('Content-Disposition: attachment; filename="'.$nombre.'"');
 
 			echo $pdf->getOutputFromHtml($html);
 		} else {
