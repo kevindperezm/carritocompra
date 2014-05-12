@@ -13,16 +13,10 @@ function esta_logueado($context, $rol_ids) {
 	$uid = $context->session->userdata('user_id');
 	$utoken = $context->session->userdata('user_token');
 
-	// var_dump($uid);
-	// var_dump($utoken);
-	// echo "<br>";
-
 	if ($uid !== false and $utoken !== false) {
 
 		$usuario = Usuario::find_by_id($uid);
 		if ($usuario === false) {
-			// echo "Usuario inválido";
-			// exit();
 			return false;
 		}
 
@@ -30,19 +24,12 @@ function esta_logueado($context, $rol_ids) {
 		if ($tkn === null) return false;
 
 		if (in_array($tkn, $usuario->tokens)) {
-			// echo "Sesión iniciada";
-			// exit();
 			return true;
 		} else {
-			// echo "Token inválido<br>";
-			// echo "<pre>".var_dump($usuario->tokens)."</pre>";
-			// exit();
 			return false;
 		}
 
 	} else {
-		// echo "Datos de sesión inválidos";
-		// exit();
 		return false;
 	}
 }
