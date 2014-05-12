@@ -25,7 +25,7 @@
 		</a>
 	</li>
 	<p class='navbar-text pull-left' style='margin-left: 1em'>
-		<i class='glyphicon glyphicon-user'></i> Bienvenido, <?=$this->session->userdata('user_nombre')?>
+		<i class='glyphicon glyphicon-user'></i> Bienvenido, <a href='<?=base_url()?>usuario'><?=$this->session->userdata('user_nombre')?></a>
 	</p>
 	<li class='pull-right'><a href="<?=base_url()?>logout" class='glyphicon glyphicon-log-out' title='Cerrar sesión'></a></li>
 </ul>
