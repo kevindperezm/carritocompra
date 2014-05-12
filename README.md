@@ -30,6 +30,10 @@ administrar el contenido del catálogo y despachar los pedidos.
   recibir sus pedidos.
 * Permitir que los clientes vean y modifiquen sus datos personales.
 * Permitir que los administradores vean y modifiquen sus datos pesonales.
-* Permitir registrarse e iniciar sesión usando Facebook.
+* Permitir registrarse e iniciar sesión a los clientes usando Facebook.
+* Implementar sistema de permisos para controlar lo que cada administrador puede
+  hacer.
+* Implementar sistema de registro para guardar un historial de las acciones de
+  cada administrador.
 
 Desarrollado en Mundo Virtual.
