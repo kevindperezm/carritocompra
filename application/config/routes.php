@@ -41,6 +41,9 @@
 $route['default_controller'] = "login";
 $route['404_override'] = '';
 
+$route['usuario/(:any)'] = 'usuario_registrado/$1';
+$route['usuario'] = 'usuario_registrado/index';
+
 $route['categoria/(:any)/buscar'] = 'catalogo/buscar';
 $route['categoria/(:any)'] = 'catalogo/categoria/$1';
 $route['categoria'] = 'catalogo/index';
