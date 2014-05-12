@@ -191,9 +191,6 @@ if (defined('ENVIRONMENT'))
 		define('APPPATH', BASEPATH.$application_folder.'/');
     }
 
-/* Carga las dependencias instaladas por Composer */
-require_once FCPATH.'/vendor/autoload.php';
-
 /*
  * --------------------------------------------------------------------
  * LOAD THE BOOTSTRAP FILE
