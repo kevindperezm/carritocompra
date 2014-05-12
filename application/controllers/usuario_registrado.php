@@ -12,14 +12,15 @@ class Usuario_registrado extends CI_Controller {
 	public function index() {
 		/* Muestra los datos personales del usuario */
 		try {
-			$usuario = Usuario::find( get_user_id($this) );
-			switch ($usuario->rol) {
+			$data['usuario'] = Usuario::find( get_user_id($this) );
+			$data['titulo'] = "Perfil de ".$data['usuario']->nombre_usuario;
+			switch ( $data['usuario']->rol ) {
 				case ROLES_ADMINISTRADOR:
-					load_admin_template($this, 'usuario/index');
+					load_admin_template($this, 'usuario/index', $data);
 					break;
 				
 				case ROLES_CLIENTE_COMUN:
-					load_template($this, 'usuario/index');
+					load_template($this, 'usuario/index', $data);
 					break;
 			}
 		} catch (Exception $e) {
