@@ -227,6 +227,7 @@ class Carrito extends CI_Controller {
 		$data['pedido'] = Pedido::find_by_id($idpedido);
 		if (!is_null($data['pedido'])) {
 			# Generar PDF
+			require_once FCPATH.'/vendor/autoload.php';
 			$pdf = new Knp\Snappy\Pdf(FCPATH.'/vendor/wkhtmltox/bin/wkhtmltopdf');
 			$html = $this->load->view('catalogo/pdf', $data, TRUE);
 			$nombre = "detalles_pedido_".$data['pedido']->created_at->format('Ymd').".pdf";
