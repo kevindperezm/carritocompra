@@ -94,6 +94,7 @@ EOF;
 			25
 		);
 
+		# Encabezados
 		$this->pdf->SetFont('Arial', 'B', 8.7);
 		$this->pdf->SetFillColor(249, 249, 249);
 		$this->pdf->SetDrawColor(221, 221, 221);
@@ -108,7 +109,27 @@ EOF;
 				true
 			);	
 		}
+		$this->pdf->Ln();
+
+		# Filas
+		$this->pdf->SetFont('Arial', '', 8.7);
+		$this->pdf->SetFillColor(255, 255, 255);
 		
+		foreach ($this->data['compras'] as $compra) {
+			for ($i=0; $i < sizeof($compra); $i++) { 
+				$this->pdf->Cell(
+					$i < sizeof($columns_width) ? $columns_width[$i] : 20, 
+					7,
+					utf8_decode(array_values($compra)[$i]),
+					true,
+					false,
+					'L',
+					true
+				);
+			}
+			$this->pdf->Ln();
+		}
+
 		$this->pdf->Ln();
 	}
 
