@@ -116,7 +116,7 @@ EOF;
 		$this->pdf->SetFillColor(255, 255, 255);
 		
 		foreach ($this->data['compras'] as $compra) {
-			for ($i=0; $i < sizeof($compra); $i++) { 
+			for ($i=0; $i < sizeof($compra); $i++) {
 				$this->pdf->Cell(
 					$i < sizeof($columns_width) ? $columns_width[$i] : 20, 
 					7,
