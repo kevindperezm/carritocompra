@@ -231,8 +231,34 @@ class Carrito extends CI_Controller {
 
 			$pdf = new FPDF();
 			$pdf->AddPage();
-			$pdf->SetFont('Arial','B',16);
-			$pdf->Cell(40,10, utf8_decode('¡Hola, Mundo!'));
+
+			$pedido = $data['pedido'];
+
+			## Tabla de datos de cliente
+			# Encabezados
+			$encabezados = array('Usuario', 'Departamento', 'Encargado', 'Fecha', 'Hora');
+			$pdf->SetFont('Arial', 'B', 9);
+			$pdf->SetFillColor(249, 249, 249);
+			$pdf->SetDrawColor(221, 221, 221);
+			foreach ($encabezados as $encabezado) {
+    			$pdf->Cell(38, 7, utf8_decode($encabezado), true, false, 'C', true);
+			}
+			$pdf->Ln();
+			## Columnas
+			# Formato de columnas
+			$pdf->SetDrawColor(221, 221, 221);
+			# Datos de columnas
+			$columnas = array( 
+				$pedido->usuario->nombres.' '.$pedido->usuario->apellido_paterno.' '.$pedido->usuario->apellido_materno,
+				$pedido->usuario->departamento,
+				$pedido->usuario->encargado_departamento,
+				$pedido->created_at->format('d-m-Y'),
+				$pedido->created_at->format('H:i') 
+			);
+			foreach ($columnas as $columna) {
+    			$pdf->Multicell(38, 7, utf8_decode($columna), true, false, 'C', false);
+			}
+
 			$pdf->Output();
 			
 		} else {
