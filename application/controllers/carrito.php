@@ -238,9 +238,9 @@ class Carrito extends CI_Controller {
 				$compra_array['codigo'] = $compra->producto->codigo;
 				$compra_array['descripcion'] = $compra->producto->descripcion;
 				$compra_array['variante'] = 'Ninguna';
-				$compra_array['precio_unitario'] = $compra->precio_unitario;
+				$compra_array['precio_unitario'] = '$'.number_format($compra->precio_unitario, 2);
 				$compra_array['cantidad'] = $compra->cantidad_total;
-				$compra_array['subtotal'] = $compra->precio_bruto_total;
+				$compra_array['subtotal'] = '$'.number_format($compra->precio_bruto_total, 2);
 				$compras[] = $compra_array;
 			}
 
