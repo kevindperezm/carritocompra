@@ -14,6 +14,7 @@ class FPDF_Generator extends PDF_Generator {
 	private function init_pdf() {
 		require_once APPPATH.$this->FPDF_INC;
 		$this->pdf = new FPDF();
+		$this->pdf->cMargin = 1;
 		$this->pdf->AddPage();
 	}
 
@@ -34,6 +35,8 @@ class FPDF_Generator extends PDF_Generator {
 class Pedido_PDF extends FPDF_Generator {
 	private $encabezados_usuario = array('Usuario', 'Departamento', 'Encargado', 'Fecha', 'Hora');
 	private $encabezados_pedido = array('No.', 'Imagen', 'Código', 'Descripción', 'Variante', 'Precio unitario', 'Cantidad', 'Subtotal');
+	private $columns_width = array(10, 24, 24, 32, 25, 30, 20, 25);
+	private $img_offset = 10;
 
 	private function create_usuario_details_table() {
 		# Encabezados
@@ -73,41 +76,23 @@ class Pedido_PDF extends FPDF_Generator {
 
 		$this->pdf->SetXY(19, $y);
 		$this->pdf->SetFont('Arial', '', 7.5);
-		$texto = <<<EOF
-Los precios listados en la siguiente tabla son los precios que estaban vigentes en el momento en que este pedido fue elaborado. 
-Los totales mostrados son calculados usando esos precios. Podrían diferir de los precios actuales de cada producto.
-EOF;
+		$texto = 
+		"Los precios listados en la siguiente tabla son los precios que estaban vigentes en el momento en que este pedido fue elaborado. 
+		Los totales mostrados son calculados usando esos precios. Podrían diferir de los precios actuales de cada producto.";
 		$this->pdf->MultiCell(0, 4, utf8_decode($texto), false, 'L');
 
 		$this->pdf->Ln();
 	}
 
 	private function create_pedido_details_table() {
-		$columns_width = array(
-			10,
-			24,
-			24,
-			32,
-			25,
-			30,
-			20,
-			25
-		);
-
 		# Encabezados
 		$this->pdf->SetFont('Arial', 'B', 8.7);
 		$this->pdf->SetFillColor(249, 249, 249);
 		$this->pdf->SetDrawColor(221, 221, 221);
-		for ($i=0; $i < sizeof($this->encabezados_pedido); $i++) { 
-			$this->pdf->Cell(
-				$i < sizeof($columns_width) ? $columns_width[$i] : 20, 
-				7,
-				utf8_decode($this->encabezados_pedido[$i]),
-				true,
-				false,
-				'L',
-				true
-			);	
+		for ($i=0; $i < sizeof($this->encabezados_pedido); $i++) {
+			$width = $i < sizeof($this->columns_width) ? $this->columns_width[$i] : 20;
+			$encabezado =  utf8_decode($this->encabezados_pedido[$i]);
+			$this->pdf->Cell($width, 7, $encabezado, true, false, 'L', true);	
 		}
 		$this->pdf->Ln();
 
@@ -116,20 +101,31 @@ EOF;
 		$this->pdf->SetFillColor(255, 255, 255);
 		
 		foreach ($this->data['compras'] as $compra) {
+			$imgsize = getimagesize($compra['imagen']);
+			$height = $imgsize[1] * $width / $imgsize[0] - 1;
+
 			for ($i=0; $i < sizeof($compra); $i++) {
-				$this->pdf->Cell(
-					$i < sizeof($columns_width) ? $columns_width[$i] : 20, 
-					7,
-					utf8_decode(array_values($compra)[$i]),
-					true,
-					false,
-					'L',
-					true
-				);
+				$width = $i < sizeof($this->columns_width) ? $this->columns_width[$i] : 20;
+				$columna = utf8_decode(array_values($compra)[$i]);
+
+				switch ($i) {
+				case 1:	/* Mostrar imagen */
+					$x = $this->pdf->GetX();
+					$y = $this->pdf->GetY();
+					$imagen = $this->pdf->Image($columna, $x + 0.5, $y + 1, $this->columns_width[$i] - 1.5);
+					$this->pdf->Cell($width, $height, $imagen, true);
+					break;
+				default: /* Mostrar resto de las celdas */
+					$x = $this->pdf->GetX();
+					$y = $this->pdf->GetY();
+					$this->pdf->MultiCell($width, $height, $columna, true);
+					$this->pdf->SetXY($x + $width, $y);
+				}
+
 			}
+
 			$this->pdf->Ln();
 		}
-
 		$this->pdf->Ln();
 	}
 
@@ -137,7 +133,7 @@ EOF;
 	protected function generate_pdf() {
 		$this->create_usuario_details_table();
 		$this->create_disclaimer();
-		$this->create_pedido_details_table();		
+		$this->create_pedido_details_table();
 	}
 }
 
