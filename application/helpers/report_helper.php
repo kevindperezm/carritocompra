@@ -11,6 +11,8 @@ class Report {
 	public function get_generator() { return $this->generator; }
 }
 
+# Generic_Generator
+# Sirve como la clase base de todos los generadores de reportes.
 class Generic_Generator {
 	protected function init($data) { return null; }
 	protected function header($data) { return null; }
@@ -26,6 +28,10 @@ class Generic_Generator {
 	}
 }
 
+# GenericePDF_Generator
+# Sirve como la clase base de los generadores de reportes que generan archivos
+# PDF. Utiliza fpdf.
+# TODO: Actualizar y cambiar fpdf por tcpdf.
 class GenericPDF_Generator extends Generic_Generator {
 	private $FPDF_INC = 'third_party/fpdf17/fpdf.php';
 	protected $pdf;
@@ -38,6 +44,8 @@ class GenericPDF_Generator extends Generic_Generator {
 	protected function output($data) {	$this->pdf->Output(); }
 }
 
+# PedidoPDF_Generator
+# Generador de PDF's con información de un pedido.
 class PedidoPDF_Generator extends GenericPDF_Generator {
 	private $encabezados_usuario = array('Usuario', 'Departamento', 'Encargado', 'Fecha', 'Hora');
 	private $encabezados_pedido = array('No.', 'Imagen', 'Código', 'Descripción', 'Variante', 'Precio unitario', 'Cantidad', 'Subtotal');
@@ -120,6 +128,13 @@ Los totales mostrados son calculados usando esos precios. Podrían diferir de lo
 				case 1:	/* Mostrar imagen */
 					$x = $this->pdf->GetX();
 					$y = $this->pdf->GetY();
+					// var_dump($x);
+					// var_dump($y);
+					// var_dump($columna);
+					// var_dump($imgsize);
+					// var_dump($this->columns_width[$i]);
+					// die();
+					## TODO: Bug que impide mostrar imagen en tabla.
 					$columna = $this->pdf->Image($columna, $x + 0.7, $y + 1, $this->columns_width[$i] - 1.5);
 				default: /* Mostrar resto de las celdas */
 					$x = $this->pdf->GetX();
@@ -130,6 +145,7 @@ Los totales mostrados son calculados usando esos precios. Podrían diferir de lo
 			}
 			$this->pdf->Ln();
 		}
+		## TODO: Mostrar cargo total por pedido calculado con los subtotales
 		$this->pdf->Ln();
 	}
 
