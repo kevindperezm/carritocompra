@@ -64,7 +64,7 @@
 		<h1 class='hidden-sm hidden-md hidden-lg'>
 			<?=$producto->descripcion?><br>
 			<span class='texto-rojo' style='font-size: 1.6em'><b>$ <?=number_format($producto->precio_unitario, 2)?></b></span><br>
-			x <?=$producto->medida->nombre?>
+			x <?= !is_null($producto->medida) ? $producto->medida->nombre : 'pieza'?>
 		</h1>
 		<div class='well'>
 			<img src="<?= base_url().$producto->imagen ?>" class="img-responsive">
