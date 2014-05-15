@@ -36,7 +36,6 @@ class Pedido_PDF extends FPDF_Generator {
 	private $encabezados_usuario = array('Usuario', 'Departamento', 'Encargado', 'Fecha', 'Hora');
 	private $encabezados_pedido = array('No.', 'Imagen', 'Código', 'Descripción', 'Variante', 'Precio unitario', 'Cantidad', 'Subtotal');
 	private $columns_width = array(10, 24, 24, 32, 25, 30, 20, 25);
-	private $img_offset = 10;
 
 	private function create_usuario_details_table() {
 		# Encabezados
@@ -78,7 +77,7 @@ class Pedido_PDF extends FPDF_Generator {
 		$this->pdf->SetFont('Arial', '', 7.5);
 		$texto = 
 		"Los precios listados en la siguiente tabla son los precios que estaban vigentes en el momento en que este pedido fue elaborado. 
-		Los totales mostrados son calculados usando esos precios. Podrían diferir de los precios actuales de cada producto.";
+Los totales mostrados son calculados usando esos precios. Podrían diferir de los precios actuales de cada producto.";
 		$this->pdf->MultiCell(0, 4, utf8_decode($texto), false, 'L');
 
 		$this->pdf->Ln();
@@ -102,7 +101,7 @@ class Pedido_PDF extends FPDF_Generator {
 		
 		foreach ($this->data['compras'] as $compra) {
 			$imgsize = getimagesize($compra['imagen']);
-			$height = $imgsize[1] * $width / $imgsize[0] - 1;
+			$height = $imgsize[1] * $width / $imgsize[0] - 0.2;
 
 			for ($i=0; $i < sizeof($compra); $i++) {
 				$width = $i < sizeof($this->columns_width) ? $this->columns_width[$i] : 20;
@@ -112,9 +111,7 @@ class Pedido_PDF extends FPDF_Generator {
 				case 1:	/* Mostrar imagen */
 					$x = $this->pdf->GetX();
 					$y = $this->pdf->GetY();
-					$imagen = $this->pdf->Image($columna, $x + 0.5, $y + 1, $this->columns_width[$i] - 1.5);
-					$this->pdf->Cell($width, $height, $imagen, true);
-					break;
+					$columna = $this->pdf->Image($columna, $x + 0.7, $y + 1, $this->columns_width[$i] - 1.5);
 				default: /* Mostrar resto de las celdas */
 					$x = $this->pdf->GetX();
 					$y = $this->pdf->GetY();
