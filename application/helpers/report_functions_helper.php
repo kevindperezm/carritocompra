@@ -6,7 +6,7 @@ function pedido_generate_pdf($context, $pedido) {
 	foreach ($pedido->compras as $compra) {
 		$compra_array = array();
 		$compra_array['no.'] = ++$no;
-		$compra_array['imagen'] = base_url().$compra->producto->imagen;
+		$compra_array['imagen'] = FCPATH.$compra->producto->imagen;
 		$compra_array['codigo'] = $compra->producto->codigo;
 		$compra_array['descripcion'] = $compra->producto->descripcion;
 		$compra_array['variante'] = 'Ninguna';
