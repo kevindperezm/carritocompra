@@ -37,6 +37,16 @@ class Pedido_PDF extends FPDF_Generator {
 	private $encabezados_pedido = array('No.', 'Imagen', 'Código', 'Descripción', 'Variante', 'Precio unitario', 'Cantidad', 'Subtotal');
 	private $columns_width = array(10, 24, 24, 32, 25, 30, 20, 25);
 
+	private function create_header() {
+		$this->pdf->SetFont('Arial', 'B', 18);
+		$x = $this->pdf->GetX();
+		$y = $this->pdf->GetY();
+		$this->pdf->MultiCell(80, 20, $this->data['nombre_tienda']);
+		$this->pdf->SetXY($x + 80, $y);
+		$this->pdf->SetFont('Arial', 'B', 15);
+		$this->pdf->Cell(100, 20, "Detalle de pedido", false, true, 'R');
+	}
+
 	private function create_usuario_details_table() {
 		# Encabezados
 		$this->pdf->SetFont('Arial', 'B', 8.7);
@@ -128,6 +138,7 @@ Los totales mostrados son calculados usando esos precios. Podrían diferir de lo
 
 	# Override
 	protected function generate_pdf() {
+		$this->create_header();
 		$this->create_usuario_details_table();
 		$this->create_disclaimer();
 		$this->create_pedido_details_table();

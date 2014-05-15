@@ -250,7 +250,8 @@ class Carrito extends CI_Controller {
 				'usuario_encargado' => $pedido->usuario->encargado_departamento,
 				'pedido_fecha' => $pedido->created_at->format('d/m/Y'),
 				'pedido_hora' => $pedido->created_at->format('H:i'),
-				'compras' => $compras
+				'compras' => $compras,
+				'nombre_tienda' => NOMBRE_TIENDA
 			);
 
 			$this->load->helper( 'pdf_helper' );
