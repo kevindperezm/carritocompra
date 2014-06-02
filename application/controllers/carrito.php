@@ -1,25 +1,10 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-/*! 
-@file controllers/carrito.php
-@brief Controller 'Carrito'.
-
-Este archivo contiene el código de la clase Carrito, que actúa como el
-controller para las operaciones propias del carrito de compra.
-*/
-
-/*!
-@brief Controller del carrito de compra.
-*/
+# Controlador Carrito.
+# Contiene el código para responder a peticiones
+# relacionadas con el carrito.
 class Carrito extends CI_Controller {
-	/*!
-	@brief Constructor del controller.
-	@return Esta función no devuelve ningún valor.
-
-	El constructor de la clase Carrito comprueba que el usuario que accede
-	a través de la petición web haya iniciado sesión en la aplicación y su
-	rol esté entre los permitidos para usar un carrito de compra.
-	*/
+	
 	public function __construct() {
 		parent::__construct();
 
@@ -28,25 +13,6 @@ class Carrito extends CI_Controller {
 		}
 	}
 
-	/*!
-	@brief Página inicial del carrito de compra.
-	@return Esta función no devuelve ningún valor.
-
-	Esté método muestra la página inicial del carrito de compra, que
-	consiste en un listado de los artículos que el usuario ha añadido
-	a su carrito, mostrando 25 artículos por página. Los artículos se
-	agrupan por id de producto y luego por id de variante, de tal forma
-	que, por ejemplo, si el producto 'Plumón BACO' con la  variante 'rojo'
-	es añadido al carrito múltiples veces, el carrito sólo muestra un 
-	producto 'Plumón BACO' con la variante 'rojo' cuya cantidad solicitada
-	es la suma de las cantidades de todas las veces que 'Plumón BACO' fue
-	añadido. Pero, si después se añade otro producto diferente u otro
-	'Pĺumón BACO' de variante distinta, como por ejemplo a¿'azul', el
-	listado del carrito mostrará ahora dos veces el producto 'Plumón BACO':
-	uno con la variante 'rojo' y otro con la variante 'azul'.
-
-	@params int pagina Página del listado que se desea ver. Por defecto es 1.
-	*/
 	public function index($pagina = 1) {
 		$data = obtener_flash($this); // Inicializa la variable $data.
 		pagina($this, 'carrito', $pagina); // Guarda el número de página que está siendo visto.
@@ -222,7 +188,6 @@ class Carrito extends CI_Controller {
 	}
 
 	public function imprimir($idpedido) {
-		// Genera el PDF imprimible de los detalles del pedido.
 		# TODO: Verificar que quien ve el pedido es quien lo generó.
 		$data['pedido'] = Pedido::find_by_id($idpedido);
 		if (!is_null($data['pedido'])) {

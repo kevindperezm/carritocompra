@@ -1,5 +1,6 @@
 body {
 	padding-top: 0em;
+	font-size: 1.2em;
 }
 
 a.btn {
@@ -11,9 +12,7 @@ a.btn {
 	color: #AAA;
 }
 
-.main {
-	padding-top: 4.3em;
-}
+/*.btn-block { margin-bottom: 0.5em; }*/
 
 footer {
 	text-align: center;

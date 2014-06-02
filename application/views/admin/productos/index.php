@@ -1,7 +1,7 @@
 <div class='container-fluid'>
 	<div class='row'>
 		<div class='col-xs-12'>
-			<h3>Administrar productos</h3>
+			<h3>Productos</h3>
 		</div>
 	</div>
 	<?php if (isset($flash)) { ?>

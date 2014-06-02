@@ -1,5 +1,5 @@
 			<!-- </div> -->
-		</div>
+		</main>
 		<footer class='footer col-xs-12 container-fluid' style='font-size: 0.8em'>
 			<div class='row'>
 				<div class='col-xs-4 col-sm-4 text-left'>

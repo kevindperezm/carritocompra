@@ -9,7 +9,7 @@
 			<?php $this->load->helper('form'); $attrs = array('id' => 'form-comando') ?>
 			<?=form_open(base_url().'admin/productos/comando', $attrs)?>
 			</form>
-			<table id='lista-productos' class='table table-condensed table-bordered table-striped'>
+			<table id='lista-productos' class='table table-condensed table-striped'>
 				<tr>
 					<?php if (!isset($hide_controls)) { ?>
 					<th></th>
@@ -32,7 +32,7 @@
 					<td><input name='seleccionados[]' type="checkbox" value='<?= $producto->id ?>'></td>
 					<?php } ?>
 					<td><?= $producto->id ?></td>
-					<td><img class='img-responsive producto-imagen' src='<?= base_url().$producto->imagen ?>'></td>
+					<td><img class='width-sm img-responsive' src='<?= base_url().$producto->imagen ?>'></td>
 					<td><?= $producto->descripcion ?></td>
 					<td><?= $producto->codigo ?></td>
 					<td><?= !is_null($producto->categoria) ? $producto->categoria->nombre : 'Ninguna'?></td>
