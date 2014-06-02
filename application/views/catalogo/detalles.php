@@ -1,42 +1,4 @@
-<style type="text/css">
-
-
-	.latte{
-		/*max-height: 20em;*/
-		float: left;
-		/*margin-bottom: 7em;*/
-		text-align: center;
-	}
-
-	.cantidad {
-		margin-bottom: 1em;
-	}
-
-	.latte img {	
-		margin: 0 auto;
-		max-width: 40em;
-		max-height: 22em;
-	}
-
-	.t1{
-		float: right;
-		width: 100%;
-	}
-
-	.t2{
-		border: 1px solid black;
-		background-color: #428bca;
-		color: white;
-	}
-
-	.numero{
-		width: 50px;
-	}
-
-
-
-</style>
-
+<link rel="stylesheet" href="<?=base_url()?>public/css/detalles-pedidos.css">
 <div class='row' style='margin-bottom: 2em'>
 	<div class='col-xs-12'>
 		<!-- <a class='btn btn-default' href='<?=''//link_pagina($this, 'catalogo', 'catalogo')?>'><i class='glyphicon glyphicon-chevron-left'></i> Atrás</a> -->

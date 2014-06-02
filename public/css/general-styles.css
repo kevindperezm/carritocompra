@@ -1,0 +1,76 @@
+/* Alineación */
+/* ------------------ */
+.left, .right, .top, .middle, .bottom { position: absolute; }
+.left { left: 0; }
+.center { margin: 0 auto; }
+.right { right: 0; }
+.top { top: 0; }
+.middle { top: 20%; bottom: 20%; }
+.bottom { bottom: 0; }
+/*.middle { margin: auto; }*/
+/* ------------------ */
+/* Tamaños de fuente */
+/* ------------------ */
+.font-xs { font-size: 0.8em; }
+.font-sm { font-size: 0.9em; }
+.font-normal { font-size: 1em; }
+.font-md { font-size: 1.8em; }
+.font-lg { font-size: 2em; }
+.font-xl { font-size: 2.3em; }
+/* ------------------ */
+/* Para columnas a la mitad */
+/* ------------------ */
+.in-between {
+  border-left: 1px solid #666;
+  border-right: 1px solid #666;
+}
+/* ------------------ */
+/* Estilos de tamaños */
+/* ------------------ */
+.width-xs { width: 2em; }
+.width-sm { width: 4em; }
+.width-md { width: 6em; }
+.width-lg { width: 10em; }
+.width-xl { width: 12em; }
+.height-xs { height: 1em; }
+.height-sm { height: 2em; }
+.height-md { height: 6em; }
+.height-lg { height: 10em; }
+.height-xl { height: 12em; }
+/* ------------------ */
+/* Estados */
+/* ------------------ */
+.deleted, .deleted * {
+  background: #E85752 !important;
+  color: #471513;
+}
+/* ------------------ */
+/* Sombreados */
+/* ------------------ */
+.shadow-sm { box-shadow: 0 0 1px 0.9px #777; }
+/* ------------------ */
+.animated { transition: 0.6s; }
+.inline { display: inline-block; }
+.notitip {
+  position: fixed;
+  top: 0;
+  right: 0;
+  border-radius: 0;
+}
+.toolbar { padding: 0.5em; margin-bottom: 0.7em; }
+body { font-size: 1.2em; }
+nav .app-logo {
+  max-height: 2em;
+  margin-top: -0.5em;
+  display: inline-block;
+}
+main {
+  padding-bottom: 20em;
+}
+footer {
+  color: white;
+  background: #272822;
+  width: 100%;
+  height: auto;
+  padding-bottom: 2em;
+}
