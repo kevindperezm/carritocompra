@@ -14,19 +14,8 @@
 </head>
 <body>
 	<div class='wrap'>
-		<header class='header container-fluid'>
-			<?php 
-			# TODO: Insertar topbars para nuevos roles aquí.
-			switch ($this->session->userdata('user_rol')) {
-				case ROLES_ADMINISTRADOR:
-					echo $this->load->view('topbars/admin-topbar');
-					break;
-				
-				case ROLES_CLIENTE_COMUN:
-					echo $this->load->view('topbars/cliente-topbar');
-					break;
-			}
-			?> 
+		<header class='header'>
+			<?php $this->load->view('topbars/cliente-topbar'); ?>
 		</header>
-		<div class='main container'>
+		<main class='main container-fluid'>
 			
