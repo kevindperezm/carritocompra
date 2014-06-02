@@ -41,7 +41,7 @@
 </div>
 <?php } else { ?>
 <div class="table-responsive">
-	<table class="table-condensed table-bordered table-striped">
+	<table class="table-condensed table-striped">
 		<tr>
 			<th>
 				Imagen
@@ -55,12 +55,6 @@
 			<th>
 				Precio
 			</th>
-			<!-- <th>
-				Existencias
-			</th> -->
-			<!-- <th>
-				Cantidad a pedir
-			</th> -->
 			<th>
 				Carrito
 			</th>
@@ -91,7 +85,6 @@
 	</table>
 </div>
 <?php } ?>
-<!-- <hr> -->
 <div class='row'>
 	<div class='col-xs-12 text-right'>
 		<ul class='pagination'>
