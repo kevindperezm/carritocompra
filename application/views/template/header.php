@@ -17,5 +17,5 @@
 		<header class='header'>
 			<?php $this->load->view('topbars/cliente-topbar'); ?>
 		</header>
-		<main class='main container-fluid'>
+		<main class='main container'>
 			
