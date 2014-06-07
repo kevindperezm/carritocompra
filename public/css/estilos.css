@@ -1,7 +1,10 @@
 body {
 	padding-top: 0em;
 	font-size: 1.2em;
+  background: #EEE;
 }
+
+main { background: white; margin-top: -2em; }
 
 a.btn {
 	text-decoration: none;
@@ -11,8 +14,6 @@ a.btn {
 	background: solid;
 	color: #AAA;
 }
-
-/*.btn-block { margin-bottom: 0.5em; }*/
 
 footer {
 	text-align: center;
