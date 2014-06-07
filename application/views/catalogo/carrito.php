@@ -35,7 +35,7 @@
 					<div class="modal-body">
 						<p>
 							¿Está seguro que desea confirmar como compra el contenido actual de su carrito?
-							Si es así haga clic en <b>Confirmar</b>. De lo contrario, haga clic en <b>Cancelar</b>
+							Si es así haga clic en <b>Confirmar</b>. De lo contrario, haga clic en <b>Cancelar</b> 
 							o cierre este cuadro de diálogo.
 						</p>
 						<p>
