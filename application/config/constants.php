@@ -77,5 +77,7 @@ foreach ($GLOBALS['TIPOS_VARIANTE'] as $key => $value) {
 	define('VARIANTE_'.strtoupper($value), $key);
 }
 
+define('APP_LOGO_PATH', 'public/img/app-logo.png');
+
 /* End of file constants.php */
 /* Location: ./application/config/constants.php */

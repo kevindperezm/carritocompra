@@ -8,9 +8,10 @@
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="<?=base_url()?>admin">
-				<?=NOMBRE_TIENDA?>
-			</a>
+			<a class="navbar-brand" href="<?=base_url()?>catalogo">
+        <img class="app-logo" src="<?php echo base_url().APP_LOGO_PATH ?>" alt='app-logo'>
+        <?=NOMBRE_TIENDA?>
+      </a>
 		</div>
 
 		<div class="collapse navbar-collapse" id='collapse1'>
