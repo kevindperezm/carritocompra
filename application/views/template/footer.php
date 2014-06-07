@@ -6,7 +6,7 @@
 					<a href='<?=base_url()?>acerca-de'>Acerca de</a>
 				</div>
 				<div class='col-xs-4 col-sm-4 text-center'>
-					Versión actualmente en desarrollo.
+					<!-- Versión actualmente en desarrollo. -->
 				</div>
 				<div class='col-xs-4 col-sm-4 text-right'>
 					Sitio web desarrollado por <a href='//mundovirtual.com.mx'>Mundo Virtual</a>
