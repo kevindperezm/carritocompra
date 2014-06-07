@@ -1,6 +1,13 @@
 <div class='row'>
 	<div class='col-xs-12'>
-		<h2><?=$titulo?></h2>
+		<h2>Catálogo de productos</h2>
+		<p class="col-xs-6">
+			Aquí puede revisar los artículos que están disponibles para su compra.
+			Para agregar un artículo a su carrito, haga clic en 
+			<strong>Ver detalles</strong> 
+			y después, en la página de detalles del producto, 
+			haga clic en <strong>Agregar al carrito</strong>.
+		</p>
 	</div>
 </div>
 <div class='row'>
