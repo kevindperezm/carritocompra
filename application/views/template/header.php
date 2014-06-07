@@ -7,6 +7,7 @@
 	<link rel="shortcut icon" href="<?=base_url()?>public/img/favicon.png">
 	<link rel="stylesheet" href="<?=base_url()?>public/css/bootstrap.min.css">
 	<link rel="stylesheet" href="<?=base_url()?>public/css/gran-contenedor.css">
+	<link rel='stylesheet' href='<?=base_url()?>public/css/general-styles.css'>
 	<link rel="stylesheet" href="<?=base_url()?>public/css/estilos.css">
 	<script src="<?=base_url()?>public/js/jquery-1.11.0.min.js"></script>
 	<script src="<?=base_url()?>public/js/bootstrap.min.js"></script>
