@@ -40,13 +40,13 @@
 				<td><?= $pedido->created_at->format('H:i') ?></td>
 				<?php if (!isset($hide_controls)) { ?>
 				<td>
-					<div class='btn-group'>
+					<div class='btn-group width-md'>
 						<a href='<?=base_url()?>admin/pedidos/procesar/<?=$pedido->id?>' class='btn btn-sm btn-default <?= $pedido->procesado ? "active" : "" ?>'>Si</a>
 						<a href='<?=base_url()?>admin/pedidos/no_procesar/<?=$pedido->id?>' class='btn btn-sm btn-default <?= $pedido->procesado ? "" : "active" ?>'>No</a>
 					</div>
 				</td>
-				<td>
-					<div class='btn-group'>
+				<td class="">
+					<div class='btn-group width-md'>
 						<a class='btn btn-default btn-sm' href='<?=base_url()?>admin/pedidos/detalles/<?=$pedido->id?>'>
 							<i class='glyphicon glyphicon-list-alt' title='Detalles del pedido  #"<?= $pedido->id ?>"'></i>
 						</a>
