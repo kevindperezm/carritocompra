@@ -192,14 +192,9 @@ class Carrito extends CI_Controller {
 		$data['pedido'] = Pedido::find_by_id($idpedido);
 		if (!is_null($data['pedido'])) {
 			# Generar PDF
-			$pdf = new Knp\Snappy\Pdf(FCPATH.'/vendor/wkhtmltox/bin/wkhtmltopdf');
-			$html = $this->load->view('catalogo/pdf', $data, TRUE);
-			$nombre = "detalles_pedido_".$data['pedido']->created_at->format('Ymd').".pdf";
-
-			header('Content-Type: application/pdf');
-			header('Content-Disposition: filename="'.$nombre.'"');
-
-			echo $pdf->getOutputFromHtml($html);
+			$pedido = $data['pedido'];
+			$this->load->view('catalogo/pedido_pdf', $data);	
+			
 		} else {
 			# No existe pedido. Notificar.
 			flash_exito($this, FALSE, 'El pedido solicitado no existe.');
