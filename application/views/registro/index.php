@@ -1,10 +1,3 @@
-<style>
-	.main {
-		padding: 0;
-		padding-bottom: 4em;
-	}
-</style>
-
 <h3>Registrarse en <?=NOMBRE_TIENDA?></h3>
 <?php $this->load->helper('form') ?>
 <?php if (!empty($falla)) { ?>
