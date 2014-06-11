@@ -17,6 +17,6 @@
 <body>
 	<div class='wrap'>
 		<header class='header'>
-			<?=$this->load->view('topbars/admin-topbar.php')?>
+			<?php if (empty($no_sidebar)) $this->load->view('topbars/admin-topbar.php')?>
 		</header>
 		<main class='main container-fluid'>

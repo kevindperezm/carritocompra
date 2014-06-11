@@ -16,7 +16,7 @@
 <body>
 	<div class='wrap'>
 		<header class='header'>
-			<?php $this->load->view('topbars/cliente-topbar'); ?>
+			<?php if (empty($no_sidebar)) $this->load->view('topbars/cliente-topbar'); ?>
 		</header>
 		<main class='main container'>
 			

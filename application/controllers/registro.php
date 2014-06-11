@@ -3,7 +3,8 @@
 class Registro extends CI_Controller {
 
 	public function index()	{
-		$data['no_sidebar'] = 1;
+		$data['no_sidebar'] = true;
+		$data['no_navbar'] = true;
 		$data['titulo'] = 'Registrarse';
 		$post = $this->input->post();
 		if (isset($post['submit'])) {
