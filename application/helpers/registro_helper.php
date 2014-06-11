@@ -23,7 +23,7 @@ function registrar_usuario($ref ,$data, $usar_roles = FALSE, $editar_id = null) 
 		$usuario = Usuario::find($editar_id);
 	}
 	$usuario->nombre_usuario = $data['usuario'];
-	if ($editar_id != null and !empty($data['contrasena'])) {
+	if (strcmp($data['contrasena'], '') != 0) {
 		$usuario->contrasena = sha1($data['contrasena']);
 	}
 	$usuario->nombres = $data['nombres'];
