@@ -9,9 +9,10 @@
 </style>
 
 <div class='container-fluid'>
+	<?php echo $this->load->view('parciales/mensaje_exitoso', true) ?>
 	<div class='row'>
 		<div class='col-xs-12' style='margin: 1em auto'>
-			<a href='<?=base_url()?>admin/productos' class='btn btn-default' style='margin-right: 0.5em'><i class='glyphicon glyphicon-chevron-left'></i> Atrás</a> 
+			<a href='<?=base_url()?>admin/productos' class='btn btn-default' style='margin-right: 0.5em'><i class='glyphicon glyphicon-chevron-left'></i> Atrás</a>
 			<h3 style="display:inline"><?=$titulo?></h3>
 		</div>
 	</div>
@@ -34,11 +35,11 @@
 	<div class='row'>
 		<div class="col-xs-12">
 			<div class='well'>
-				<?php 
+				<?php
 				$attrs = array('class' => 'form', 'id' => 'form-producto');
 				$this->load->helper('form');
 				?>
-				<?= form_open_multipart($destino_formulario, $attrs) ?>
+				<?= form_open_multipart(base_url().'admin/productos/nuevo', $attrs) ?>
 					<div class='row'>
 						<?php if (isset($editar_producto)) { ?>
 						<div class='col-xs-12 col-md-6' style='min-height: 16em !important'>
@@ -78,12 +79,12 @@
 									</label>
 								</div>
 								<div id='detalles-variantes' style='margin-top: 1.8em'>
-									<?php 
+									<?php
 									$i = 0;
 									do { ?>
-										<?php 
+										<?php
 										$tv = $this->input->post('tipo-variante');
-										$tv = $tv[$i]; 
+										$tv = $tv[$i];
 										if ($i == 0 or $tv != 0) { ?>
 											<div id='variantes-clonable'>
 												<div class='input-group'>
@@ -112,9 +113,9 @@
 														break;
 												} ?>
 											</div>
-										<?php 
+										<?php
 										} ?>
-									<?php 
+									<?php
 										$i++;
 									} while($v and $i < sizeof($this->input->post('tipo-variante'))); ?>
 								</div>
@@ -137,7 +138,7 @@
 								<select class="form-control" name='categoria'>
 									<option value='0'>Seleccionar categoría</option>
 									<?php foreach (Categoria::all(array('order' => 'nombre ASC')) as $cat) { ?>
-										<option value='<?=$cat->id?>' 
+										<option value='<?=$cat->id?>'
 										<?php
 										if ($E and !is_null($editar_producto->categoria)) {
 											if ($cat->id == $editar_producto->categoria->id) echo 'selected="selected"';
@@ -155,7 +156,7 @@
 								<select class="form-control" name='medida'>
 									<option value='0'>Seleccionar medida</option>
 									<?php foreach (Medida::all(array('order' => 'nombre ASC')) as $medida) { ?>
-										<option value='<?=$medida->id?>' 
+										<option value='<?=$medida->id?>'
 										<?php
 										if ($E and !is_null($editar_producto->medida)) {
 											if ($medida->id == $editar_producto->medida->id) echo 'selected="selected"';
