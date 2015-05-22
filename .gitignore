@@ -1,9 +1,5 @@
-<<<<<<< HEAD
 /vendor/
 .directory
-=======
-/.directory
->>>>>>> imprimir-knpsnappy
 /application/logs
 /configs
 /.directory
