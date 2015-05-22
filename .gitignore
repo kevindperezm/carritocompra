@@ -3,3 +3,7 @@
 /application/logs
 /configs
 /.directory
+
+# Ignorar imágenes de productos
+/public/img/productos
+
