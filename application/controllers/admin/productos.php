@@ -74,7 +74,7 @@ class Productos extends CI_Controller {
 
   public function nuevo(){
     $post = $this->input->post();
-    $data['destino_formulario'] = base_url().'admin/productos/nuevo';
+    $data = obtener_flash($this);
     if ( ! $post) {
       $data['titulo'] = 'Nuevo producto';
       load_admin_template($this, 'admin/productos/nuevo', $data);
@@ -89,12 +89,13 @@ class Productos extends CI_Controller {
     if ($formulario_valido && $imagen['nombre'] != null) {
       $this->almacenarNuevoProducto($imagen, $parametros);
       flash_exito($this, TRUE, "Producto \"".$this->input->post('descripcion')."\" registrado.");
-      redirect('admin/productos/index');
+      redirect('admin/productos/nuevo');
     } else {
       $data['exito'] = FALSE;
       $data['titulo'] = 'Nuevo producto';
       $data['falla'] = true;
-      if ($imagen != null and $imagen['nombre'] == null) $data['mensaje_error'] = $img['error'];
+      if ($imagen != null and $imagen['nombre'] == null) $data['mensaje_error']
+        = $imagen['error'];
       else $data['mensaje_error'] = '';
       load_admin_template($this,'admin/productos/nuevo', $data);
     }
