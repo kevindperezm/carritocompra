@@ -75,61 +75,67 @@ class Productos extends CI_Controller {
   public function nuevo(){
     $post = $this->input->post();
     $data['destino_formulario'] = base_url().'admin/productos/nuevo';
-    if ($post == null) {
+    if ( ! $post) {
       $data['titulo'] = 'Nuevo producto';
-      load_admin_template($this,"admin/productos/nuevo", $data);
+      load_admin_template($this, 'admin/productos/nuevo', $data);
     } else {
-      /* Validamos formulario */
-      $form = $this->validar_formulario();
+      $this->guardarProductoSiFormularioEsValido($post);
+    }
+  }
 
-      /* Procesamos la imagen */
-      $img = null;
-      if ($form) $img = $this->subir_imagen();
+  private function guardarProductoSiFormularioEsValido($parametros) {
+    $formulario_valido = $this->validar_formulario();
+    $imagen            = $this->subir_imagen();
+    if ($formulario_valido && $imagen['nombre'] != null) {
+      $this->almacenarNuevoProducto($imagen, $parametros);
+      flash_exito($this, TRUE, "Producto \"".$this->input->post('descripcion')."\" registrado.");
+      redirect('admin/productos/index');
+    } else {
+      $data['exito'] = FALSE;
+      $data['titulo'] = 'Nuevo producto';
+      $data['falla'] = true;
+      if ($imagen != null and $imagen['nombre'] == null) $data['mensaje_error'] = $img['error'];
+      else $data['mensaje_error'] = '';
+      load_admin_template($this,'admin/productos/nuevo', $data);
+    }
+  }
 
-      if ($img != null and $img['nombre'] != null) {
-        /* Procesamos el producto */
-        $p = new Producto();
-        $p->codigo = $post['codigo'];
-        $p->descripcion = $post['descripcion'];
-        $p->imagen = 'public/img/productos/'.$img['nombre'];
-        $p->stock_unitario = $post['stock'];
-        $p->precio_unitario = $post['precio_unitario'];
-        $p->publicado = 0;
-        $p->categoria_id = $post['categoria'];
-        $p->medida_id = $post['medida'];
+  private function almacenarNuevoProducto($imagen, $parametros) {
+    $this->almacenarDatosDeNuevoProducto($imagen, $parametros);
+    $this->almacenarVariantesDeNuevoProducto($parametros);
+  }
 
-        $p->save();
+  private function almacenarDatosDeNuevoProducto($imagen, $parametros) {
+    $p = new Producto();
+    $p->codigo          = $parametros['codigo'];
+    $p->descripcion     = $parametros['descripcion'];
+    $p->imagen          = 'public/img/productos/'.$imagen['nombre'];
+    $p->stock_unitario  = $parametros['stock'];
+    $p->precio_unitario = $parametros['precio_unitario'];
+    $p->publicado       = 0;
+    $p->categoria_id    = $parametros['categoria'];
+    $p->medida_id       = $parametros['medida'];
+    $p->save();
+  }
 
-        // Almacenando variantes de este producto
-        $indiceTipos = 0;
-        $indiceValores = 0;
-        while ($indiceTipos < sizeof($post['tipo-variante'])) {
-          $tipoVariante = $post['tipo-variante'][$indiceTipos];
-          if ($tipoVariante != 0) {
-            // Operación de guardado. Si ignora $tipoVariante == 0
-            $valorVariante = $post['valor-variante'][$indiceValores];
-            // Guardamos variante
-            $V = new Variante();
-            $V->tipo_variante_id = $tipoVariante;
-            $V->producto_id = $p->id; // ID del producto recién guardado.
-            $V->valor = $valorVariante;
-            $V->save();
+  private function almacenarVariantesDeNuevoProducto($parametros) {
+    $indiceTipos = 0;
+    $indiceValores = 0;
+    while ($indiceTipos < sizeof($parametros['tipo-variante'])) {
+      $tipoVariante = $parametros['tipo-variante'][$indiceTipos];
+      if ($tipoVariante != 0) {
+          // Operación de guardado. Si ignora $tipoVariante == 0
+        $valorVariante = $parametros['valor-variante'][$indiceValores];
+          // Guardamos variante
+        $V = new Variante();
+        $V->tipo_variante_id = $tipoVariante;
+        $V->producto_id = $p->id; // ID del producto recién guardado.
+        $V->valor = $valorVariante;
+        $V->save();
 
-            $indiceValores++;
-          }
-          $indiceTipos++;
-        }
-
-        flash_exito($this, TRUE, "Producto \"".$this->input->post('descripcion')."\" registrado.");
-        redirect('admin/productos/index');
-      } else {
-        $data['exito'] = FALSE;
-        $data['titulo'] = 'Nuevo producto';
-        $data['falla'] = true;
-        if ($img != null and $img['nombre'] == null) $data['mensaje_error'] = $img['error'];
-        else $data['mensaje_error'] = '';
-        load_admin_template($this,'admin/productos/nuevo', $data);
+        $indiceValores++;
       }
+      $indiceTipos++;
     }
   }
 
