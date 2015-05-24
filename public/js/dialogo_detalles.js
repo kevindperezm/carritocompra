@@ -28,6 +28,7 @@ $(function() {
   function exitoAlAgregar(json) {
     notificarExito('Producto añadido', json.mensaje);
     cerrarDialogoDeDetalles();
+    actualizarConteoDeCarrito();
   }
 
   function notificarExito(titulo, mensaje) {
@@ -38,6 +39,13 @@ $(function() {
 
   function cerrarDialogoDeDetalles() {
     $('.modal.fade.in').modal('hide');
+  }
+
+  function actualizarConteoDeCarrito() {
+    url = location.origin + '/carrito/conteo';
+    $.get(url, function(html) {
+      $('.conteo-carrito').html(html);
+    });
   }
 
 });
