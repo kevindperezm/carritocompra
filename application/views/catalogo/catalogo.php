@@ -83,7 +83,7 @@
 							echo !is_null($objeto->medida) ? $objeto->medida->nombre : 'pieza';
 						echo "</td>";
 						echo "<td class='text-center'>";
-							echo "<a style='margin-top: 0' href='".base_url()."producto/$objeto->id' class='btn btn-primary'><i class='glyphicon glyphicon-list'></i> Ver detalles</button>";
+							echo "<a style='margin-top: 0' href='".base_url()."producto/$objeto->id' class='btn btn-primary mostrar-detalles'><i class='glyphicon glyphicon-list'></i> Ver detalles</button>";
 						echo "</td>";
 					echo "</tr>";
 				}
@@ -98,3 +98,4 @@
 		</ul>
 	</div>
 </div>
+<script src="<?php echo base_url().'public/js/dialogo_detalles.js' ?>"></script>
