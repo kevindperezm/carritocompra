@@ -83,7 +83,7 @@ class Catalogo extends CI_Controller {
 		/* Comportamiento básico */
 		// Condiciones de búsqueda
 		$condiciones = array(
-			'conditions' => array('ucase(descripcion) like ?', '%'.strtoupper($post['buscar']).'%'),
+			'conditions' => array('descripcion like ?', '%'.strtoupper($post['buscar']).'%'),
 			'order' => 'descripcion asc'
 		);
 		$paginationUrl = 'catalogo/buscar/pagina/';
