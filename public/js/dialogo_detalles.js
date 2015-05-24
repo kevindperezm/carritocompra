@@ -1,6 +1,7 @@
 $(function() {
 
   $('body').on('click', '.mostrar-detalles', mostrarDetalles);
+  $('body').on('submit', '.comprar-form', agregarProductoACarrito);
 
   function mostrarDetalles(event) {
     event.preventDefault();
@@ -15,6 +16,13 @@ $(function() {
 
   function mostrarDialogoDeDetalles(html) {
     $(html).modal();
+  }
+
+  function agregarProductoACarrito(event) {
+    event.preventDefault();
+
+    url = $(this).attr('action');
+    $.post(url, $(this).serialize());
   }
 
 });
