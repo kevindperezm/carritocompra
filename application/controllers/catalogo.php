@@ -23,7 +23,7 @@ class Catalogo extends CI_Controller {
 
 		$pagina = !empty($params['pagina']) ? $params['pagina'] : 1;
 		pagina($this, 'catalogo', $pagina);
-		pagina($this, 'buscar', 0); 
+		pagina($this, 'buscar', 0);
 
 		$condiciones = array(
 			'conditions' => array('publicado > 0'),
@@ -40,11 +40,11 @@ class Catalogo extends CI_Controller {
 		}
 
 		$data = obtener_flash($this);
-		$data['productos'] = do_pagination($this, 
-		   $paginationUrl, 
+		$data['productos'] = do_pagination($this,
+		   $paginationUrl,
 		   0,
-		   $pagina, 
-		   'Producto', 
+		   $pagina,
+		   'Producto',
 		   $condiciones,
 		   Catalogo::$productosPorPagina,
 		   $paginationSegment
@@ -52,7 +52,7 @@ class Catalogo extends CI_Controller {
 
 		$categoria == null ? $data['titulo'] = 'Catálogo de productos' : $data['titulo'] = 'Productos en la categoría "'.$categoriaObj->nombre.'"';
 		$categoria == null ? $data['busquedaUrl'] = 'catalogo/buscar' : $data['busquedaUrl'] = "categoria/$categoriaObj->url_nombre/buscar";
-		
+
 		load_template($this, 'catalogo/catalogo', $data);
 	}
 
@@ -76,7 +76,7 @@ class Catalogo extends CI_Controller {
 			return;
 		}
 
-		pagina($this, 'buscar', $pagina); 
+		pagina($this, 'buscar', $pagina);
 		$data = obtener_flash($this);
 
 
@@ -101,10 +101,10 @@ class Catalogo extends CI_Controller {
 
 
 		$data['productos'] = do_pagination($this,
-		   $paginationUrl, 
+		   $paginationUrl,
 		   0,
-		   $pagina, 
-		   'Producto', 
+		   $pagina,
+		   'Producto',
 		   $condiciones,
 		   Catalogo::$productosPorPagina,
 		   $paginationSegment
@@ -114,7 +114,7 @@ class Catalogo extends CI_Controller {
 		$categoria == null ? $data['titulo'] = 'Resultados para "'.$post['buscar'].'" en el catálogo' : (
 		$data['titulo'] = 'Resultados para "'.$post['buscar'].'" en la categoría "'.$categoriaObj->nombre.'"');
 		$categoria == null ? $data['busquedaUrl'] = 'catalogo/buscar' : $data['busquedaUrl'] = "categoria/$categoriaObj->url_nombre/buscar";
-		load_template($this, 'catalogo/catalogo', $data);	
+		load_template($this, 'catalogo/catalogo', $data);
 	}
 
 	public function producto($id) {
@@ -127,7 +127,11 @@ class Catalogo extends CI_Controller {
 			$data['no_disponible']= "El producto especificado no está disponible";
 			$data['titulo'] = 'Producto no disponible';
 		}
-		load_template($this, 'catalogo/detalles', $data);
+		if ($this->input->is_ajax_request()) {
+			$this->load->view('catalogo/dialogo_detalles', $data);
+		} else {
+			load_template($this, 'catalogo/detalles', $data);
+		}
 	}
 }
 
