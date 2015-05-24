@@ -4,7 +4,7 @@
 # Contiene el código para responder a peticiones
 # relacionadas con el carrito.
 class Carrito extends CI_Controller {
-	
+
 	public function __construct() {
 		parent::__construct();
 
@@ -29,9 +29,9 @@ class Carrito extends CI_Controller {
 		foreach(Compra::all($conds) as $compra) {
 			// Se calcula el total de las compras de carrito de este usuario.
 			$total += $compra->cantidad_agrupado * $compra->producto->precio_unitario;
-		}		
+		}
 		$data['total'] = $total; // El totalse guarda para ser enviado a la view.
-		
+
 		$data['compras'] = do_pagination($this,
 			'carrito/pagina/',
 			0,
@@ -71,8 +71,15 @@ class Carrito extends CI_Controller {
 				$compra->concretada = FALSE;
 				$compra->save();
 
-				flash_exito($this, TRUE, 'Producto "'.$producto->descripcion.'" agregado al carrito.');
-				redirect(base_url().'producto/'.$producto->id);
+				$mensaje = 'Producto "'.$producto->descripcion.'" agregado al carrito.';
+				if ($this->input->is_ajax_request()) {
+					$this->output->set_content_type('application/json')
+					             ->set_output(json_encode(['exito' => true,
+						                                      'mensaje' => $mensaje]));
+				} else {
+					flash_exito($this, TRUE, $mensaje);
+					redirect(base_url().'producto/'.$producto->id);
+				}
 				return;
 			} catch (Exception $e) {
 				flash_accion_error($this, 'Error al crear nueva compra de carrito: '.$e->getMessage());
@@ -88,8 +95,8 @@ class Carrito extends CI_Controller {
 			if ($compra === null) {
 				flash_exito($this, FALSE, 'La compra especificada no existe.');
 			} else {
-				/* 
-				* Borramos las compras que tengan sean del mismo usuario, 
+				/*
+				* Borramos las compras que tengan sean del mismo usuario,
 				* producto y variante.
 				*/
 				Compra::table()->delete(array(
@@ -157,7 +164,7 @@ class Carrito extends CI_Controller {
 			} else {
 				// Usuario inválido
 				flash_exito($this, FALSE, 'Usuario no válido.');
-				redirect(base_url().'carrito');	
+				redirect(base_url().'carrito');
 			}
 		} catch (Exception $e) {
 			flash_accion_error($this, "No fue posible confirmar un carrito como pedido: ".$e->getMessage());
@@ -193,8 +200,8 @@ class Carrito extends CI_Controller {
 		if (!is_null($data['pedido'])) {
 			# Generar PDF
 			$pedido = $data['pedido'];
-			$this->load->view('catalogo/pedido_pdf', $data);	
-			
+			$this->load->view('catalogo/pedido_pdf', $data);
+
 		} else {
 			# No existe pedido. Notificar.
 			flash_exito($this, FALSE, 'El pedido solicitado no existe.');
