@@ -27,12 +27,17 @@ $(function() {
 
   function exitoAlAgregar(json) {
     notificarExito('Producto añadido', json.mensaje);
+    cerrarDialogoDeDetalles();
   }
 
   function notificarExito(titulo, mensaje) {
     new PNotify({ title: titulo,
                   text:  mensaje,
                   type:  'success' });
+  }
+
+  function cerrarDialogoDeDetalles() {
+    $('.modal.fade.in').modal('hide');
   }
 
 });
