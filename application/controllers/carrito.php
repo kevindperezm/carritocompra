@@ -208,5 +208,11 @@ class Carrito extends CI_Controller {
 			redirigir_pagina($this, 'catalogo', 'catalogo');
 		}
 	}
+
+	public function conteo() {
+		$this->load->helper('carrito_helper');
+
+		return boton_carrito($this);
+	}
 }
 ?>
