@@ -11,8 +11,9 @@
       <span class='texto-rojo' style='font-size: 1.6em'><b>$ <?=number_format($producto->precio_unitario, 2)?></b></span><br>
       x <?= !is_null($producto->medida) ? $producto->medida->nombre : 'pieza'?>
     </h1>
-    <div class='well'>
-      <img src="<?= base_url().$producto->imagen ?>" class="img-responsive">
+    <div class='well text-center'>
+      <img src="<?= base_url().$producto->imagen ?>" class="img-responsive"
+           style="display: inline-block; margin-bottom: 0.5em;">
       <br>
       <?php $this->load->helper('form')?>
       <?php $attrs = array('class' => 'comprar-form') ?>
