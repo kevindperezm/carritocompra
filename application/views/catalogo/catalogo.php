@@ -70,7 +70,11 @@
 				foreach ($productos as $objeto) {
 					echo "<tr>";
 						echo "<td>";
-							echo "<a href='".base_url()."producto/$objeto->id'><img class='img-responsive producto-imagen' src='".base_url().$objeto->imagen."' alt='Imagen de producto'></a>";
+							echo "<a class='mostrar-detalles' " .
+							        "href='".base_url()."producto/$objeto->id'>" .
+							        "<img class='img-responsive producto-imagen' " .
+							             "src='".base_url().$objeto->imagen."' " .
+							             "alt='Imagen de producto'></a>";
 						echo "</td>";
 						echo "<td>";
 							echo "<b>".$objeto->descripcion."</b>";
