@@ -39,13 +39,18 @@ $(function() {
 
   function agregarProductoACarrito(event) {
     event.preventDefault();
+    self = this
 
+    mostrarProgresoDeCarga(self);
     url = $(this).attr('action');
-    $.post(url, $(this).serialize(), exitoAlAgregar);
+    $.post(url, $(this).serialize(), function(json) {
+      exitoAlAgregar(self, json);
+    });
   }
 
-  function exitoAlAgregar(json) {
+  function exitoAlAgregar(elemento, json) {
     notificarExito('Producto añadido', json.mensaje);
+    ocultarIndicadorDeCarga(elemento);
     cerrarDialogoDeDetalles();
     actualizarConteoDeCarrito();
   }
