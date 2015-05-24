@@ -15,7 +15,7 @@
       <img src="<?= base_url().$producto->imagen ?>" class="img-responsive">
       <br>
       <?php $this->load->helper('form')?>
-      <?php $attrs = array('id' => 'comprar-form') ?>
+      <?php $attrs = array('class' => 'comprar-form') ?>
       <?=form_open(base_url().'carrito/agregar/'.$producto->id, $attrs)?>
       <input type='hidden' name='id' value='<?=$producto->id?>'>
       <div class='input-group'>
