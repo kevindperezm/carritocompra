@@ -3,9 +3,9 @@
 		<h2>Catálogo de productos</h2>
 		<p class="col-xs-8">
 			Aquí puede revisar los artículos que están disponibles para su compra.
-			Para agregar un artículo a su carrito, haga clic en 
-			<strong>Ver detalles</strong> 
-			y después, en la página de detalles del producto, 
+			Para agregar un artículo a su carrito, haga clic en
+			<strong>Ver detalles</strong>
+			y después, en la página de detalles del producto,
 			haga clic en <strong>Agregar al carrito</strong>.
 		</p>
 	</div>
@@ -35,7 +35,7 @@
 			<?= $mensaje ?>
 		</div>
 	</div>
-</div>	
+</div>
 <?php } ?>
 <hr>
 <?php if (sizeof($productos) <= 0) { ?>
@@ -67,7 +67,6 @@
 			</th>
 		</tr>
 			<?php
-				$this->load->helper('form');
 				foreach ($productos as $objeto) {
 					echo "<tr>";
 						echo "<td>";
