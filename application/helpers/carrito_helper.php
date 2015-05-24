@@ -7,8 +7,8 @@ function boton_carrito($contexto) {
     'group' => 'producto_id, variante_id'
     ));
   // if (sizeof($carrito) > 0) {
-    echo " <span class='badge'>".sizeof($carrito)."</span>";
-  // } 
+    echo " <span class='conteo-carrito badge'>".sizeof($carrito)."</span>";
+  // }
 }
 
 ?>
