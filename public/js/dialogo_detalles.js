@@ -7,15 +7,34 @@ $(function() {
     event.preventDefault();
 
     url = $(this).attr('href');
-    cargarDialogoDeDetalles(url);
+    cargarDialogoDeDetalles(this, url);
   }
 
-  function cargarDialogoDeDetalles(url) {
-    $.get(url, mostrarDialogoDeDetalles);
+  function cargarDialogoDeDetalles(elemento, url) {
+    mostrarProgresoDeCarga(elemento);
+    $.get(url, function(html) {
+      mostrarDialogoDeDetalles(elemento, html);
+    });
   }
 
-  function mostrarDialogoDeDetalles(html) {
+  function mostrarProgresoDeCarga(elemento) {
+    crearIndicadorDeCarga().insertAfter(elemento);
+  }
+
+  function crearIndicadorDeCarga() {
+    url = location.origin + '/public/img/loader.gif';
+    return $('<div class="loader text-center">' +
+                '<img src="' + url + '">' +
+             '</div>');
+  }
+
+  function mostrarDialogoDeDetalles(elemento, html) {
     $(html).modal();
+    ocultarIndicadorDeCarga(elemento);
+  }
+
+  function ocultarIndicadorDeCarga(elemento) {
+    $(elemento).next('.loader').remove();
   }
 
   function agregarProductoACarrito(event) {
