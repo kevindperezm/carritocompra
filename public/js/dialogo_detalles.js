@@ -22,7 +22,17 @@ $(function() {
     event.preventDefault();
 
     url = $(this).attr('action');
-    $.post(url, $(this).serialize());
+    $.post(url, $(this).serialize(), exitoAlAgregar);
+  }
+
+  function exitoAlAgregar(json) {
+    notificarExito('Producto añadido', json.mensaje);
+  }
+
+  function notificarExito(titulo, mensaje) {
+    new PNotify({ title: titulo,
+                  text:  mensaje,
+                  type:  'success' });
   }
 
 });
