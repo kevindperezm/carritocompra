@@ -73,7 +73,7 @@ class PedidoPDF_Generator extends GenericPDF_Generator {
 		# Datos
 		$this->pdf->SetFillColor(255, 255, 255);
 		$this->pdf->SetDrawColor(221, 221, 221);
-		$columnas = array( 
+		$columnas = array(
 			$data['usuario_nombre'],
 			$data['usuario_departamento'],
 			$data['usuario_encargado'],
@@ -97,8 +97,8 @@ class PedidoPDF_Generator extends GenericPDF_Generator {
 		$this->pdf->MultiCell(19, 4, 'Nota: ');
 		$this->pdf->SetXY(19, $y);
 		$this->pdf->SetFont('Arial', '', 7.5);
-		$texto = 
-		"Los precios listados en la siguiente tabla son los precios que estaban vigentes en el momento en que este pedido fue elaborado. 
+		$texto =
+		"Los precios listados en la siguiente tabla son los precios que estaban vigentes en el momento en que este pedido fue elaborado.
 Los totales mostrados son calculados usando esos precios. Podrían diferir de los precios actuales de cada producto.";
 		$this->pdf->MultiCell(0, 4, utf8_decode($texto), false, 'L');
 		$this->pdf->Ln();
@@ -112,7 +112,7 @@ Los totales mostrados son calculados usando esos precios. Podrían diferir de lo
 		for ($i=0; $i < sizeof($this->encabezados_pedido); $i++) {
 			$width = $i < sizeof($this->columns_width) ? $this->columns_width[$i] : 20;
 			$encabezado =  utf8_decode($this->encabezados_pedido[$i]);
-			$this->pdf->Cell($width, 7, $encabezado, true, false, 'L', true);	
+			$this->pdf->Cell($width, 7, $encabezado, true, false, 'L', true);
 		}
 		$this->pdf->Ln();
 		# Filas
@@ -123,7 +123,8 @@ Los totales mostrados son calculados usando esos precios. Podrían diferir de lo
 			$height = $imgsize[1] * $width / $imgsize[0] - 0.2;
 			for ($i=0; $i < sizeof($compra); $i++) {
 				$width = $i < sizeof($this->columns_width) ? $this->columns_width[$i] : 20;
-				$columna = utf8_decode(array_values($compra)[$i]);
+				$valores = array_values($compra);
+				$columna = utf8_decode($valores[$i]);
 				switch ($i) {
 				case 1:	/* Mostrar imagen */
 					$x = $this->pdf->GetX();

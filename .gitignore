@@ -7,3 +7,5 @@
 # Ignorar imágenes de productos
 /public/img/productos
 
+# Ignorar bases de datos sqlite
+*.sqlite

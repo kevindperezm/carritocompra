@@ -8,9 +8,11 @@
 	<link rel="stylesheet" href="<?=base_url()?>public/css/bootstrap.min.css">
 	<link rel="stylesheet" href="<?=base_url()?>public/css/gran-contenedor.css">
 	<link rel='stylesheet' href='<?=base_url()?>public/css/general-styles.css'>
+	<link rel="stylesheet" href="<?=base_url()?>public/css/pnotify.custom.min.css">
 	<link rel="stylesheet" href="<?=base_url()?>public/css/estilos.css">
 	<script src="<?=base_url()?>public/js/jquery-1.11.0.min.js"></script>
 	<script src="<?=base_url()?>public/js/bootstrap.min.js"></script>
+	<script src="<?=base_url()?>public/js/pnotify.custom.min.js"></script>
 	<script src="<?=base_url()?>public/js/confirmar.js"></script>
 </head>
 <body>
@@ -19,4 +21,3 @@
 			<?php if (empty($no_sidebar)) $this->load->view('topbars/cliente-topbar'); ?>
 		</header>
 		<main class='main container'>
-			

@@ -3,9 +3,9 @@
 		<h2>Catálogo de productos</h2>
 		<p class="col-xs-8">
 			Aquí puede revisar los artículos que están disponibles para su compra.
-			Para agregar un artículo a su carrito, haga clic en 
-			<strong>Ver detalles</strong> 
-			y después, en la página de detalles del producto, 
+			Para agregar un artículo a su carrito, haga clic en
+			<strong>Ver detalles</strong>
+			y después, en la página de detalles del producto,
 			haga clic en <strong>Agregar al carrito</strong>.
 		</p>
 	</div>
@@ -35,7 +35,7 @@
 			<?= $mensaje ?>
 		</div>
 	</div>
-</div>	
+</div>
 <?php } ?>
 <hr>
 <?php if (sizeof($productos) <= 0) { ?>
@@ -67,11 +67,14 @@
 			</th>
 		</tr>
 			<?php
-				$this->load->helper('form');
 				foreach ($productos as $objeto) {
 					echo "<tr>";
 						echo "<td>";
-							echo "<a href='".base_url()."producto/$objeto->id'><img class='img-responsive producto-imagen' src='".base_url().$objeto->imagen."' alt='Imagen de producto'></a>";
+							echo "<a class='mostrar-detalles' " .
+							        "href='".base_url()."producto/$objeto->id'>" .
+							        "<img class='img-responsive producto-imagen' " .
+							             "src='".base_url().$objeto->imagen."' " .
+							             "alt='Imagen de producto'></a>";
 						echo "</td>";
 						echo "<td>";
 							echo "<b>".$objeto->descripcion."</b>";
@@ -84,7 +87,11 @@
 							echo !is_null($objeto->medida) ? $objeto->medida->nombre : 'pieza';
 						echo "</td>";
 						echo "<td class='text-center'>";
-							echo "<a style='margin-top: 0' href='".base_url()."producto/$objeto->id' class='btn btn-primary'><i class='glyphicon glyphicon-list'></i> Ver detalles</button>";
+							echo "<a style='margin-top: 0' href='".base_url()."producto/$objeto->id'
+							         class='btn btn-danger mostrar-detalles'>" .
+							        "<i class='glyphicon glyphicon-list'></i>".
+							        " Añadir al carrito".
+							      "</a>";
 						echo "</td>";
 					echo "</tr>";
 				}
@@ -99,3 +106,4 @@
 		</ul>
 	</div>
 </div>
+<script src="<?php echo base_url().'public/js/dialogo_detalles.js' ?>"></script>

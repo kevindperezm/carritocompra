@@ -4,14 +4,7 @@
 			<h3>Productos</h3>
 		</div>
 	</div>
-	<?php if (isset($flash)) { ?>
-	<div class="row">
-		<div class='col-xs-12 alert alert-dismissable <?= $exito ? 'alert-success' : 'alert-warning' ?>'>
-			<button class='close' data-dismiss='alert'>x</button>
-			<?= $mensaje ?>
-		</div>
-	</div>	
-	<?php } ?>
+	<?php echo $this->load->view('parciales/mensaje_exitoso', true) ?>
 	<div class='row'>
 
 		<div class='acciones-bar col-sm-8'>
@@ -68,4 +61,3 @@
 		</div>
 	</div>
 </div>
-	
